@@ -1,9 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { albumsSlice } from './albums-slice';
-import { todosSlice } from './todos-slice';
+import { User } from '../models/user.models';
+import { Album, albumsSlice } from './albums-slice';
+import { Todo, todosSlice } from './todos-slice';
 import { usersSlice } from './users-slice';
 
-export const appStore = configureStore({
+export interface AppState {
+  albums: Album[];
+  todos: Todo[];
+  users: User[];
+}
+
+export const appStore = configureStore<AppState>({
   reducer: {
     albums: albumsSlice.reducer,
     todos: todosSlice.reducer,
